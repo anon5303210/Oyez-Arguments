@@ -1,0 +1,8 @@
+# Crawler working files — the raw per-case cache used to BUILD the advocate index.
+# The finished index (docs/data/advocates.json) IS committed; this raw cache is not.
+tools/cache/
+tools/crawl.log
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db

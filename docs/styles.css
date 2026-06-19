@@ -1,0 +1,150 @@
+:root{
+  --bg:#0b1f3a;        /* deep court blue */
+  --bg2:#0f2747;
+  --card:#13315c;
+  --card2:#17396b;
+  --ink:#eaf1fb;
+  --muted:#9fb4d4;
+  --accent:#e8b54d;    /* brass/gold */
+  --accent-ink:#2a1c00;
+  --line:rgba(255,255,255,.08);
+  --safe-top:env(safe-area-inset-top,0px);
+  --safe-bottom:env(safe-area-inset-bottom,0px);
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important} /* ensure the hidden attribute wins over display:flex */
+html,body{margin:0;padding:0}
+body{
+  background:linear-gradient(180deg,var(--bg),var(--bg2));
+  color:var(--ink);
+  font:16px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  min-height:100dvh;
+  -webkit-font-smoothing:antialiased;
+  padding-bottom:calc(150px + var(--safe-bottom)); /* room for mini-player + footer */
+}
+
+/* App bar */
+.appbar{
+  position:sticky;top:0;z-index:20;
+  display:flex;align-items:center;gap:8px;
+  padding:calc(10px + var(--safe-top)) 12px 10px;
+  background:rgba(11,31,58,.92);
+  backdrop-filter:saturate(140%) blur(8px);
+  border-bottom:1px solid var(--line);
+}
+.appbar-title{
+  font-size:18px;font-weight:700;margin:0;flex:1;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.iconbtn{
+  appearance:none;border:0;background:transparent;color:var(--ink);
+  font-size:24px;line-height:1;min-width:40px;height:40px;border-radius:10px;
+  cursor:pointer;
+}
+.iconbtn:active{background:rgba(255,255,255,.08)}
+
+/* Views */
+.view{padding:12px;max-width:760px;margin:0 auto}
+.hint{color:var(--muted);font-size:14px;margin:4px 2px 14px}
+.section-h{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:18px 2px 8px}
+
+/* Lists: big tappable rows */
+.list{display:flex;flex-direction:column;gap:8px}
+.row{
+  display:flex;align-items:center;gap:12px;
+  background:var(--card);border:1px solid var(--line);border-radius:14px;
+  padding:14px 14px;color:inherit;text-align:left;width:100%;
+  cursor:pointer;transition:background .12s;
+}
+.row:active{background:var(--card2)}
+.row-main{flex:1;min-width:0}
+.row-title{font-weight:600;white-space:normal}
+.row-sub{color:var(--muted);font-size:13px;margin-top:2px}
+.row-chev{color:var(--muted);font-size:22px}
+.row-badge{
+  font-size:11px;font-weight:700;color:var(--accent-ink);background:var(--accent);
+  padding:2px 8px;border-radius:999px;white-space:nowrap;
+}
+
+/* Term grid */
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.tile{
+  background:var(--card);border:1px solid var(--line);border-radius:14px;
+  padding:18px 10px;text-align:center;color:inherit;cursor:pointer;
+}
+.tile:active{background:var(--card2)}
+.tile-year{font-size:22px;font-weight:700}
+.tile-sub{font-size:12px;color:var(--muted);margin-top:2px}
+
+/* Search box */
+.searchwrap{position:relative;margin:6px 0 4px}
+.search{
+  width:100%;padding:14px 14px;border-radius:12px;border:1px solid var(--line);
+  background:var(--card);color:var(--ink);font-size:16px;
+}
+.search::placeholder{color:var(--muted)}
+
+/* Player */
+.player{display:flex;flex-direction:column;gap:14px;padding-top:6px}
+.player-case{font-size:22px;font-weight:700;line-height:1.25}
+.player-meta{color:var(--muted);font-size:14px}
+.sessions{display:flex;flex-wrap:wrap;gap:8px}
+.chip{
+  border:1px solid var(--line);background:var(--card);color:var(--ink);
+  padding:8px 12px;border-radius:999px;font-size:13px;cursor:pointer;
+}
+.chip[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent);font-weight:700}
+
+.bigplay{
+  align-self:center;width:84px;height:84px;border-radius:50%;
+  border:0;background:var(--accent);color:var(--accent-ink);
+  font-size:34px;cursor:pointer;display:flex;align-items:center;justify-content:center;
+  box-shadow:0 8px 24px rgba(0,0,0,.35);
+}
+.bigplay:active{transform:scale(.97)}
+
+.scrub{display:flex;flex-direction:column;gap:6px}
+.scrub input[type=range]{width:100%;accent-color:var(--accent);height:28px}
+.times{display:flex;justify-content:space-between;color:var(--muted);font-size:12px}
+.skips{display:flex;justify-content:center;gap:18px;align-items:center}
+.skipbtn{
+  border:1px solid var(--line);background:var(--card);color:var(--ink);
+  border-radius:12px;padding:10px 14px;font-size:14px;cursor:pointer;
+}
+
+.facts{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px}
+.facts h3{margin:0 0 6px;font-size:14px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+.facts p{margin:0;color:var(--ink);font-size:15px}
+
+/* States */
+.center{display:flex;flex-direction:column;align-items:center;gap:10px;color:var(--muted);padding:48px 16px;text-align:center}
+.spinner{width:30px;height:30px;border-radius:50%;border:3px solid rgba(255,255,255,.18);border-top-color:var(--accent);animation:spin 1s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.errbox{background:rgba(255,80,80,.1);border:1px solid rgba(255,120,120,.3);border-radius:12px;padding:14px;color:#ffd9d9}
+.linkbtn{background:none;border:0;color:var(--accent);text-decoration:underline;cursor:pointer;font-size:15px;padding:0}
+
+/* Mini-player */
+.miniplayer{
+  position:fixed;left:0;right:0;bottom:calc(var(--safe-bottom));
+  z-index:30;display:flex;align-items:center;gap:12px;
+  margin:0 auto;max-width:760px;
+  background:rgba(19,49,92,.96);backdrop-filter:blur(8px);
+  border-top:1px solid var(--line);padding:10px 14px;
+}
+.miniplay{
+  width:46px;height:46px;border-radius:50%;border:0;background:var(--accent);
+  color:var(--accent-ink);font-size:20px;cursor:pointer;flex:0 0 auto;
+}
+.mini-meta{flex:1;min-width:0;cursor:pointer}
+.mini-title{font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mini-sub{color:var(--muted);font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+/* Footer credit */
+.credit{
+  position:fixed;left:0;right:0;bottom:0;z-index:5;
+  font-size:11px;color:var(--muted);text-align:center;padding:6px 12px calc(6px + var(--safe-bottom));
+  pointer-events:none;opacity:0; /* shown only at the very bottom of scroll via body, kept simple: visible in flow */
+}
+/* Keep footer in normal flow at page bottom instead of fixed overlap */
+.credit{position:static;opacity:1;pointer-events:auto;margin-top:24px}
+.credit a{color:var(--muted)}

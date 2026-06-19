@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0b1f3a" />
+  <title>Oyez Arguments — Supreme Court oral arguments</title>
+  <meta name="description" content="A friendly, mobile-first way to listen to U.S. Supreme Court oral arguments. Data from Oyez (oyez.org)." />
+
+  <!-- PWA: lets you 'Add to Home Screen' and helps iOS keep audio alive -->
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="apple-touch-icon" href="icons/icon-180.png" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Oyez" />
+
+  <link rel="icon" href="icons/icon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="appbar">
+    <button id="backBtn" class="iconbtn" aria-label="Back" hidden>‹</button>
+    <h1 id="title" class="appbar-title">Oyez Arguments</h1>
+    <button id="searchBtn" class="iconbtn" aria-label="Search advocates">⌕</button>
+  </header>
+
+  <main id="view" class="view" aria-live="polite">
+    <!-- views render here -->
+  </main>
+
+  <!-- Persistent mini-player: stays alive while you browse so audio never stops -->
+  <div id="miniplayer" class="miniplayer" hidden>
+    <button id="miniPlay" class="miniplay" aria-label="Play/Pause">▶</button>
+    <div class="mini-meta" id="miniMeta" role="button" tabindex="0">
+      <div class="mini-title" id="miniTitle">—</div>
+      <div class="mini-sub" id="miniSub">Oyez Arguments</div>
+    </div>
+  </div>
+
+  <footer class="credit">
+    Audio &amp; data courtesy of <a href="https://www.oyez.org" target="_blank" rel="noopener">Oyez</a>
+    (Cornell&apos;s LII, Justia &amp; Chicago-Kent). Licensed <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC&nbsp;BY-NC&nbsp;4.0</a>. Personal, non-commercial use.
+  </footer>
+
+  <!-- ONE audio element for the whole app. Streams the Oyez MP3; never downloaded/hosted by us. -->
+  <audio id="audio" preload="none" playsinline></audio>
+
+  <script src="app.js"></script>
+</body>
+</html>
